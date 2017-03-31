@@ -1,6 +1,6 @@
 Package.describe({
   name: 'clinical:hl7-resource-binary',
-  version: '1.0.6',
+  version: '1.0.7',
   summary: 'HL7 FHIR Resource - Binary',
   git: 'https://github.com/clinical-meteor/hl7-resource-binary',
   documentation: 'README.md'

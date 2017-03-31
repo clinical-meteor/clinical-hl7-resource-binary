@@ -1,7 +1,11 @@
 
-if(typeof oAuth2Server === "object"){
+var fhirVersion = 'fhir-3.0.0';
+
+if(typeof oAuth2Server === 'object'){
+  // TODO:  double check that this is needed; and that the /api/ route is correct
   JsonRoutes.Middleware.use(
-    '/api/*',
+    // '/api/*',
+    '/fhir-3.0.0/*',
     oAuth2Server.oauthserver.authorise()   // OAUTH FLOW - A7.1
   );
 }
@@ -10,8 +14,7 @@ if(typeof oAuth2Server === "object"){
 
 
 
-
-JsonRoutes.add("get", "/fhir/Binary/:id", function (req, res, next) { process.env.DEBUG && console.log('GET /fhir/Binary/' + req.params.id);
+JsonRoutes.add("get", "/" + fhirVersion + "/Binary/:id", function (req, res, next) { process.env.DEBUG && console.log('GET /fhir/Binary/' + req.params.id);
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   var accessTokenStr = (req.params && req.params.access_token) || (req.query && req.query.access_token);
@@ -46,7 +49,7 @@ JsonRoutes.add("get", "/fhir/Binary/:id", function (req, res, next) { process.en
 
 
 
-JsonRoutes.add("get", "/fhir/Binary", function (req, res, next) { process.env.DEBUG && console.log('GET /fhir/Binary', req.query);
+JsonRoutes.add("get", "/" + fhirVersion + "/Binary", function (req, res, next) { process.env.DEBUG && console.log('GET /fhir/Binary', req.query);
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   var accessTokenStr = (req.params && req.params.access_token) || (req.query && req.query.access_token);
