@@ -1,8 +1,12 @@
 
-JsonRoutes.Middleware.use(
+if(typeof oAuth2Server === "object"){
+  JsonRoutes.Middleware.use(
     '/api/*',
     oAuth2Server.oauthserver.authorise()   // OAUTH FLOW - A7.1
-);
+  );
+}
+
+
 
 
 
@@ -11,7 +15,10 @@ JsonRoutes.add("get", "/fhir/Binary/:id", function (req, res, next) { process.en
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   var accessTokenStr = (req.params && req.params.access_token) || (req.query && req.query.access_token);
-  var accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
+  var accessToken;
+  if(typeof oAuth2Server === "object"){
+    accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
+  }
 
   if (accessToken || process.env.NOAUTH) {
     process.env.TRACE && console.log('accessToken', accessToken);
@@ -43,7 +50,10 @@ JsonRoutes.add("get", "/fhir/Binary", function (req, res, next) { process.env.DE
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   var accessTokenStr = (req.params && req.params.access_token) || (req.query && req.query.access_token);
-  var accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
+  var accessToken;
+  if(typeof oAuth2Server === "object"){
+    accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
+  }
 
   if (accessToken || process.env.NOAUTH) {
     process.env.TRACE && console.log('accessToken', accessToken);
