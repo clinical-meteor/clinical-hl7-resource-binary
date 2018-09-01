@@ -1,6 +1,6 @@
 Package.describe({
   name: 'clinical:hl7-resource-binary',
-  version: '1.0.8',
+  version: '1.1.0',
   summary: 'HL7 FHIR Resource - Binary',
   git: 'https://github.com/clinical-meteor/hl7-resource-binary',
   documentation: 'README.md'
@@ -11,12 +11,15 @@ Package.onUse(function (api) {
 
   api.use('meteor-platform');
   api.use('mongo');
-  api.use('aldeed:simple-schema@1.3.3');
-  api.use('aldeed:collection2@2.5.0');
+  api.use('ecmascript@0.9.0');
+  
+  api.use('aldeed:collection2@3.0.0');
+  api.use('clinical:hl7-resource-datatypes@4.0.0');
+  api.use('clinical:hl7-resource-bundle@1.4.0');
+
   api.use('simple:json-routes@2.1.0');
 
-  api.use('clinical:base-model@1.3.5');
-  api.use('clinical:hl7-resource-datatypes@3.0.0');
+  api.use('clinical:base-model@1.4.0');
 
   api.addFiles('lib/hl7-resource-binary.js', ['client', 'server']);
   api.addFiles('server/rest.js', 'server');
@@ -30,3 +33,8 @@ Package.onUse(function (api) {
   api.export('Binarys');
   api.export('BinarySchema');
 });
+
+
+Npm.depends({
+  "simpl-schema": "1.5.3"
+})
