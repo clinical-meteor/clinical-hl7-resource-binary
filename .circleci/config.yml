@@ -116,7 +116,7 @@ jobs:
 
     - run: cd ../baseline && npm i --save-dev selenium-webdriver@3.6.0 chromedriver
     - run: cd ../baseline && meteor add dispatch:mocha practicalmeteor:chai
-    - run: cd ../baseline && meteor add clinical:hl7-resource-audit-event
+    - run: cd ../baseline && meteor add clinical:hl7-resource-binary
     - run: cd ../baseline && mkdir imports 
     - run: cp tests/Binary.tests.js ../baseline/imports/
 
